@@ -11,17 +11,32 @@ app.get("/", (req, res) => {
 
   console.log("Responding to route")
 
-  res.json(buzzwords.slice(0, 10))
+  res.sendFile('main_page.html', {
+    root: __dirname
+  });
+
 
 })
 
 app.get("/users", (req, res) => {
 
   console.log("Got a users GET request. Answering..")
-  const user1 = {firstName: "Jason", lastName: "Bourne"}
-  const user2 = {firstName: "Bobby", lastName: "Brown"}
-  const user3 = {firstName: "James", lastName: "Hetfield"}
-  const user4 = {firstName: "Fornalio", lastName: "Fornaroli"}
+  const user1 = {
+    firstName: "Jason",
+    lastName: "Bourne"
+  }
+  const user2 = {
+    firstName: "Bobby",
+    lastName: "Brown"
+  }
+  const user3 = {
+    firstName: "James",
+    lastName: "Hetfield"
+  }
+  const user4 = {
+    firstName: "Fornalio",
+    lastName: "Fornaroli"
+  }
   res.json([user1, user2, user3, user4])
 
 })
