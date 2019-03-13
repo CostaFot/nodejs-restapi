@@ -1,11 +1,11 @@
 // load app server using express
 const express = require('express')
 const buzzwords = require('buzzwords')
-const responseTime = require('response-time')
 const app = express()
+const morgan = require('morgan')
 
-//Create a middleware that adds a X-Response-Time header to responses.
-app.use(responseTime());
+app.use(morgan('combined'))
+
 
 app.get("/", (req, res) => {
 
