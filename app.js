@@ -1,6 +1,10 @@
 // load app server using express
 const express = require('express')
+const responseTime = require('response-time')
 const app = express()
+
+//Create a middleware that adds a X-Response-Time header to responses.
+app.use(responseTime());
 
 app.get("/", (req, res) => {
 
@@ -8,6 +12,18 @@ app.get("/", (req, res) => {
   res.send("Hello from me")
 
 })
+
+app.get("/users", (req, res) => {
+
+  console.log("Got a uses GET request. Answering..")
+  const user1 = {firstName: "Jason", lastName: "Bourne"}
+  const user2 = {firstName: "Bobby", lastName: "Brown"}
+  const user3 = {firstName: "James", lastName: "Hetfield"}
+  const user4 = {firstName: "Fornalio", lastName: "Fornaroli"}
+  res.json([user1, user2, user3, user4])
+
+})
+
 
 // localhost:3003
 app.listen(3003, () => {
