@@ -1,5 +1,6 @@
 // load app server using express
 const express = require('express')
+const buzzwords = require('buzzwords')
 const responseTime = require('response-time')
 const app = express()
 
@@ -9,13 +10,14 @@ app.use(responseTime());
 app.get("/", (req, res) => {
 
   console.log("Responding to route")
-  res.send("Hello from me")
+
+  res.json(buzzwords.slice(0, 10))
 
 })
 
 app.get("/users", (req, res) => {
 
-  console.log("Got a uses GET request. Answering..")
+  console.log("Got a users GET request. Answering..")
   const user1 = {firstName: "Jason", lastName: "Bourne"}
   const user2 = {firstName: "Bobby", lastName: "Brown"}
   const user3 = {firstName: "James", lastName: "Hetfield"}
