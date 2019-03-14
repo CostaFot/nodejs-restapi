@@ -3,9 +3,27 @@ const express = require('express')
 const buzzwords = require('buzzwords')
 const app = express()
 const morgan = require('morgan')
+const mysql = require('mysql')
 
 app.use(morgan('combined'))
 
+app.get('/user/:id', (req, res) => {
+  console.log("Fetching user with id: " + req.params.id)
+
+  const connection = mysql.createConnection({
+    host: 'locahjgjhjghjlhost',
+    user: 'Cohjghjsta',
+    password: 'Kohjjj',
+    database: 'lbta_mysql'
+  })
+
+  connection.query("SELECT * FROM users", (err, rows, fields) =>{
+    console.log("Doing something withdb")
+    res.json(rows)
+  })
+
+  //res.end()
+})
 
 app.get("/", (req, res) => {
 
